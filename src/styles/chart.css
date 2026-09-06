@@ -1,0 +1,267 @@
+/* The Command chart: a flat 2D plate. Colours come from the active chart theme via custom
+   properties set inline on `.plate` (see ChartBoard.tsx). Slots into the cascade declared in
+   app.css (`@layer tokens, base, shell, components, ...`). */
+@layer components {
+  .plate {
+    position: absolute;
+    inset: 22px 22px 18px 22px;
+    outline: none;
+    touch-action: none;
+    overscroll-behavior: contain;
+    user-select: none;
+    -webkit-user-select: none;
+    background: var(--chart-water);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    cursor: grab;
+  }
+
+  .plate.is-dragging {
+    cursor: grabbing;
+  }
+
+  .plate:focus-visible {
+    outline: 2px solid var(--k0);
+    outline-offset: 2px;
+  }
+
+  /* the Suspense fallback and the fade wrapper both fill the plate */
+  .plate__board,
+  .plate__fade {
+    position: absolute;
+    inset: 0;
+  }
+
+  .plate__svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  /* chart type: mono, counter-scaled by the layers, haloed so it stays legible over lines */
+  .chart-text {
+    font-family: var(--mono);
+    letter-spacing: 0.01em;
+    paint-order: stroke fill;
+    stroke: var(--chart-halo);
+    /* 3 screen px: --chart-s is chart units per pixel, set by the board each render */
+    stroke-width: calc(var(--chart-s, 1) * 3px);
+    stroke-linejoin: round;
+    fill: var(--chart-ink);
+    pointer-events: none;
+  }
+
+  .chart-text--grat {
+    fill: var(--chart-ink2);
+  }
+
+  .chart-text--port {
+    font-weight: 500;
+    letter-spacing: 0.06em;
+  }
+
+  .chart-text--zone {
+    letter-spacing: 0.05em;
+    fill: var(--chart-ink2);
+  }
+
+  .chart-text--ship {
+    font-weight: 500;
+  }
+
+  /* regulatory magenta: zone names for restricted areas, TSS and ECA (the chart-convention
+     exception to the two-colour rule, confined to the plate; see theme.ts) */
+  .chart-text--reg {
+    fill: var(--chart-reg);
+    font-weight: 500;
+  }
+
+  /* depth values inside shallow zones */
+  .chart-text--depth {
+    letter-spacing: 0.02em;
+  }
+
+  /* hatch lines inside restricted areas: the <pattern> in ZoneLayer sizes them in chart units so
+     the pitch scales with zoom; the stroke is 1 screen px (width S, set by the layer) */
+  .chart-hatch {
+    stroke-linecap: butt;
+  }
+
+  /* hover chip: a black block (both modes) next to the cursor, never a pointer target */
+  .plate__chip {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 6;
+    max-width: 260px;
+    padding: 8px 10px 9px;
+    background: var(--chart-chip-bg);
+    color: var(--chart-chip-ink);
+    border-radius: var(--radius);
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.35;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 120ms ease-out;
+    will-change: transform;
+  }
+
+  .plate__chip.is-on {
+    opacity: 1;
+  }
+
+  .plate__chip[data-reduced='true'],
+  .plate.is-dragging .plate__chip {
+    transition: none;
+  }
+
+  .plate.is-dragging .plate__chip {
+    opacity: 0;
+  }
+
+  .plate__chip-title {
+    font-weight: 500;
+    letter-spacing: -0.005em;
+  }
+
+  .plate__chip-lines {
+    margin-top: 3px;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    line-height: 1.4;
+    color: rgba(245, 239, 221, 0.82);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .plate__chip-lines:empty {
+    display: none;
+  }
+
+  .plate__chip-lines > div {
+    overflow-wrap: anywhere;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .plate__chip {
+      transition: none;
+    }
+  }
+
+  /* zoom, fit, follow and mode controls: a small black block bottom-right */
+  .plate__controls {
+    position: absolute;
+    right: 14px;
+    bottom: 14px;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    background: rgba(17, 17, 18, 0.94);
+    color: #f5efdd;
+    border: 1px solid rgba(245, 239, 221, 0.14);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .plate__controls button {
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #f5efdd;
+    cursor: pointer;
+    transition: background-color 180ms, color 180ms;
+  }
+
+  .plate__controls button + button {
+    border-top: 1px solid rgba(245, 239, 221, 0.12);
+  }
+
+  .plate__controls button:hover {
+    background: #242427;
+  }
+
+  .plate__controls button:active {
+    background: #313136;
+  }
+
+  .plate__controls button[aria-pressed='true'] {
+    background: #f2c230;
+    color: #111112;
+  }
+
+  .plate__controls button:disabled {
+    color: #5d5a55;
+    cursor: default;
+    background: transparent;
+  }
+
+  .plate__controls button:focus-visible {
+    outline: 2px solid #f2c230;
+    outline-offset: -3px;
+  }
+
+  /* scale bar and cursor position, bottom-left */
+  .plate__scale {
+    position: absolute;
+    left: 14px;
+    bottom: 12px;
+    z-index: 3;
+    display: flex;
+    align-items: flex-end;
+    gap: 14px;
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1;
+    color: var(--chart-ink2);
+    text-shadow: 0 0 3px var(--chart-water), 0 0 3px var(--chart-water);
+    pointer-events: none;
+  }
+
+  .plate__scale-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .plate__scale-rule {
+    height: 5px;
+    border-left: 1px solid var(--chart-ink2);
+    border-right: 1px solid var(--chart-ink2);
+    border-bottom: 1px solid var(--chart-ink2);
+  }
+
+  .plate__scale-cursor {
+    min-width: 12ch;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .plate__scale-cursor[hidden] {
+    display: none;
+  }
+
+  /* below 1100px the mission panel becomes a sheet over the lower half of the stage (app.css:
+     height min(50%, 440px) of the command column, lifted 14px above the status bar). Keep the
+     chart chrome above it: the controls turn into a row, the scale bar sits just over the sheet. */
+  @media (max-width: 1100px) {
+    .command--inspector .plate__controls,
+    .command--inspector .plate__scale {
+      bottom: calc(min(50% + 14px + var(--strip-h) / 2, 440px) + 16px);
+    }
+
+    .command--inspector .plate__controls {
+      flex-direction: row;
+    }
+
+    .command--inspector .plate__controls button + button {
+      border-top: 0;
+      border-left: 1px solid rgba(245, 239, 221, 0.12);
+    }
+  }
+}

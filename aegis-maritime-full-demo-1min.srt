@@ -1,0 +1,51 @@
+1
+00:00:00,000 --> 00:00:04,000
+Choose the cyclone forecast scenario to begin the voyage demo.
+
+2
+00:00:04,000 --> 00:00:08,000
+Run the optimizer to compare fuel, cost, emissions, and risk.
+
+3
+00:00:08,000 --> 00:00:13,000
+The balanced plan lowers fuel and CO₂e, with shore power at berth.
+
+4
+00:00:13,000 --> 00:00:18,000
+Replay the voyage and watch the vessel follow its planned corridor.
+
+5
+00:00:18,000 --> 00:00:23,000
+At T+36 hours, the forecast shifts south and storm risk increases.
+
+6
+00:00:23,000 --> 00:00:28,000
+A rolling re-plan generates a safer weather-routed corridor from the live position.
+
+7
+00:00:28,000 --> 00:00:33,000
+Arrival confirms the final fuel, CO₂e, risk, distance, and ETA.
+
+8
+00:00:33,000 --> 00:00:38,000
+Results compares the Pareto trade-offs: balanced, lowest-cost, fastest, and baseline.
+
+9
+00:00:38,000 --> 00:00:43,000
+Fleet opens the vessel dossier, including hull, engine, cargo, and CII details.
+
+10
+00:00:43,000 --> 00:00:48,000
+Routes shows the mission builder, fuel choices, priorities, and search registration.
+
+11
+00:00:48,000 --> 00:00:53,000
+Analytics explains prediction quality, convergence, Pareto performance, and cost.
+
+12
+00:00:53,000 --> 00:00:58,000
+Ports checks channel limits, vessel compatibility, and operational constraints.
+
+13
+00:00:58,000 --> 00:01:00,000
+Settings controls units, safety thresholds, accounting, replay, and algorithms.
