@@ -30,7 +30,7 @@ function CiiScale({ p }: { p: CiiProjection }) {
         {stops.map((to, i) => {
           const w = ((to - from) / max) * 100
           from = to
-          return <span key={i} style={{ width: `${w}%`, background: i === 4 ? 'rgba(168,38,28,0.45)' : i === 3 ? 'rgba(17,17,18,0.32)' : 'var(--hair)' }} />
+          return <span key={i} style={{ width: `${w}%`, background: i === 4 ? 'rgba(168,38,28,0.45)' : i === 3 ? 'rgba(21,22,20,0.32)' : 'var(--hair)' }} />
         })}
         <i style={{ left: `${pos}%` }} />
       </div>
@@ -65,19 +65,19 @@ function SpeedPower({ v }: { v: Vessel }) {
       <div className="chart chart--short">
         <ResponsiveContainer>
           <LineChart data={data} margin={{ top: 8, right: 8, bottom: 0, left: 0 }}>
-            <CartesianGrid stroke="rgba(245,239,221,0.08)" vertical={false} />
-            <XAxis dataKey="speed" tick={{ fontSize: 12, fill: '#9a958c' }} stroke="rgba(245,239,221,0.24)" tickLine={false} />
-            <YAxis tick={{ fontSize: 12, fill: '#9a958c' }} stroke="transparent" tickLine={false} width={44} />
-            <Tooltip contentStyle={{ background: '#1a1a1c', border: '1px solid rgba(245,239,221,0.24)', color: '#f5efdd', fontSize: 12, fontFamily: 'var(--mono)' }} formatter={(val) => `${Number(val).toLocaleString()} kW`} labelFormatter={(l) => `${l} kn`} />
-            <Line type="monotone" dataKey="calm" stroke="#f2c230" dot={false} strokeWidth={1.8} isAnimationActive={false} />
-            <Line type="monotone" dataKey="head" stroke="#c9c3b6" dot={false} strokeWidth={1.2} isAnimationActive={false} />
+            <CartesianGrid stroke="rgba(244,244,239,0.08)" vertical={false} />
+            <XAxis dataKey="speed" tick={{ fontSize: 12, fill: '#a3a3a0' }} stroke="rgba(244,244,239,0.24)" tickLine={false} />
+            <YAxis tick={{ fontSize: 12, fill: '#a3a3a0' }} stroke="transparent" tickLine={false} width={44} />
+            <Tooltip contentStyle={{ background: '#1c1d1a', border: '1px solid rgba(244,244,239,0.24)', color: '#f4f4ef', fontSize: 12, fontFamily: 'var(--mono)' }} formatter={(val) => `${Number(val).toLocaleString()} kW`} labelFormatter={(l) => `${l} kn`} />
+            <Line type="monotone" dataKey="calm" stroke="#8fd66e" dot={false} strokeWidth={1.8} isAnimationActive={false} />
+            <Line type="monotone" dataKey="head" stroke="#d5d6d1" dot={false} strokeWidth={1.2} isAnimationActive={false} />
             <Line type="monotone" dataKey="cap" stroke="#ef4b3f" dot={false} strokeWidth={1} strokeDasharray="4 4" isAnimationActive={false} />
           </LineChart>
         </ResponsiveContainer>
       </div>
       <div className="legend">
-        <span><i style={{ background: '#f2c230' }} />calm water, P = k × V^{v.powerExponent}</span>
-        <span><i style={{ background: '#c9c3b6' }} />head seas Hs 4 m, 30 kn</span>
+        <span><i style={{ background: '#8fd66e' }} />calm water, P = k × V^{v.powerExponent}</span>
+        <span><i style={{ background: '#d5d6d1' }} />head seas Hs 4 m, 30 kn</span>
         <span><i style={{ background: '#ef4b3f' }} />90% MCR</span>
       </div>
     </div>

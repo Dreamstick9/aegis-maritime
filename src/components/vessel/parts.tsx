@@ -12,7 +12,7 @@ import { deckY, hullPoint, type Box, type VesselLayout } from './hull'
 import { drawBridgeGlass, drawFacade, drawFlag, drawFunnel, drawHatchCover, drawSide, drawTransom, isIndianFlag } from './textures'
 import { useCanvasTexture, type Draw } from './useCanvasTexture'
 
-const YELLOW = '#f2c230'
+const SIGNAL = '#8fd66e'
 
 const WHITE = '#e4ded0'
 const STEEL = '#6f7178'
@@ -151,7 +151,7 @@ export function HullBody({ layout, vessel, xray, region, onSelect, geometry }: P
       {/* bulbous bow */}
       <mesh position={layout.bulb.position} scale={layout.bulb.radius} castShadow onClick={(e) => { if (!tap(e)) return; onSelect('bow') }}>
         <sphereGeometry args={[1, 40, 24]} />
-        <meshStandardMaterial color={bowSel ? YELLOW : '#8f3d2c'} emissive={bowSel ? YELLOW : '#000'} emissiveIntensity={bowSel ? 0.35 : 0} roughness={0.8} metalness={0.08} transparent={xray} opacity={uw} />
+        <meshStandardMaterial color={bowSel ? SIGNAL : '#8f3d2c'} emissive={bowSel ? SIGNAL : '#000'} emissiveIntensity={bowSel ? 0.35 : 0} roughness={0.8} metalness={0.08} transparent={xray} opacity={uw} />
       </mesh>
       {/* skeg and stern boss */}
       <mesh geometry={skeg} castShadow>
@@ -159,7 +159,7 @@ export function HullBody({ layout, vessel, xray, region, onSelect, geometry }: P
       </mesh>
       <mesh position={[layout.propeller.position[0] + 0.02 * L, layout.propeller.position[1], 0]} rotation={[0, 0, Math.PI / 2]}>
         <cylinderGeometry args={[1.15, 1.45, 0.05 * L, 20]} />
-        <meshStandardMaterial color={propSel ? YELLOW : '#7a3325'} roughness={0.75} metalness={0.1} transparent={xray} opacity={uw} />
+        <meshStandardMaterial color={propSel ? SIGNAL : '#7a3325'} roughness={0.75} metalness={0.1} transparent={xray} opacity={uw} />
       </mesh>
       {/* bilge keels */}
       {[1, -1].map((side) => (
@@ -194,7 +194,7 @@ export function Hatches({ layout, xray, region, hover, onSelect, onHover, holdSe
             {/* coaming */}
             <mesh position={[cx, cy - 0.2, 0]} castShadow receiveShadow>
               <boxGeometry args={[len + 0.5, ch + 0.4, wid + 0.5]} />
-              <meshStandardMaterial color={isSel ? YELLOW : isHover ? '#8a8b90' : '#5c5e64'} emissive={isSel ? YELLOW : '#000'} emissiveIntensity={isSel ? 0.25 : 0} roughness={0.7} metalness={0.3} transparent={xray} opacity={op} />
+              <meshStandardMaterial color={isSel ? SIGNAL : isHover ? '#8a8b90' : '#5c5e64'} emissive={isSel ? SIGNAL : '#000'} emissiveIntensity={isSel ? 0.25 : 0} roughness={0.7} metalness={0.3} transparent={xray} opacity={op} />
             </mesh>
             {/* two side-rolling panels */}
             {[1, -1].map((s) => (
@@ -243,7 +243,7 @@ export function Accommodation({ layout, vessel, xray, region, hover, onSelect, o
     if (radar.current) radar.current.rotation.y += dt * 1.6
     if (radar2.current) radar2.current.rotation.y -= dt * 1.1
   })
-  const tint = sel ? YELLOW : hover === 'acc' ? '#f3eee0' : '#ffffff'
+  const tint = sel ? SIGNAL : hover === 'acc' ? '#f3eee0' : '#ffffff'
   const emissive = sel ? 0.28 : 0
   const bridgeW = bridge.size[2] * 0.66
   const bx = bridge.position[0]
@@ -256,38 +256,38 @@ export function Accommodation({ layout, vessel, xray, region, hover, onSelect, o
       <mesh position={[ax, ay, 0]} castShadow receiveShadow>
         <boxGeometry args={[al, ah, aw]} />
         {/* +x front, -x aft, +y, -y, +z side, -z side */}
-        <meshStandardMaterial attach="material-0" map={front} color={tint} emissive={sel ? YELLOW : '#000'} emissiveIntensity={emissive} roughness={0.62} metalness={0.06} transparent={xray} opacity={op} />
-        <meshStandardMaterial attach="material-1" map={aft} color={tint} emissive={sel ? YELLOW : '#000'} emissiveIntensity={emissive} roughness={0.62} metalness={0.06} transparent={xray} opacity={op} />
-        <meshStandardMaterial attach="material-2" color={sel ? YELLOW : '#cfc9bb'} roughness={0.8} metalness={0.05} transparent={xray} opacity={op} />
+        <meshStandardMaterial attach="material-0" map={front} color={tint} emissive={sel ? SIGNAL : '#000'} emissiveIntensity={emissive} roughness={0.62} metalness={0.06} transparent={xray} opacity={op} />
+        <meshStandardMaterial attach="material-1" map={aft} color={tint} emissive={sel ? SIGNAL : '#000'} emissiveIntensity={emissive} roughness={0.62} metalness={0.06} transparent={xray} opacity={op} />
+        <meshStandardMaterial attach="material-2" color={sel ? SIGNAL : '#cfc9bb'} roughness={0.8} metalness={0.05} transparent={xray} opacity={op} />
         <meshStandardMaterial attach="material-3" color="#8a8680" transparent={xray} opacity={op} />
-        <meshStandardMaterial attach="material-4" map={side} color={tint} emissive={sel ? YELLOW : '#000'} emissiveIntensity={emissive} roughness={0.62} metalness={0.06} transparent={xray} opacity={op} />
-        <meshStandardMaterial attach="material-5" map={side} color={tint} emissive={sel ? YELLOW : '#000'} emissiveIntensity={emissive} roughness={0.62} metalness={0.06} transparent={xray} opacity={op} />
+        <meshStandardMaterial attach="material-4" map={side} color={tint} emissive={sel ? SIGNAL : '#000'} emissiveIntensity={emissive} roughness={0.62} metalness={0.06} transparent={xray} opacity={op} />
+        <meshStandardMaterial attach="material-5" map={side} color={tint} emissive={sel ? SIGNAL : '#000'} emissiveIntensity={emissive} roughness={0.62} metalness={0.06} transparent={xray} opacity={op} />
       </mesh>
       {/* external stair towers and deck overhang lines */}
       {[1, -1].map((s) => (
         <mesh key={s} position={[ax - al * 0.34, ay, s * (aw / 2 + 0.7)]} castShadow>
           <boxGeometry args={[3.2, ah - 2.4, 1.4]} />
-          <meshStandardMaterial color={sel ? YELLOW : WHITE} roughness={0.7} transparent={xray} opacity={op} />
+          <meshStandardMaterial color={sel ? SIGNAL : WHITE} roughness={0.7} transparent={xray} opacity={op} />
         </mesh>
       ))}
       {/* bridge wing deck, full beam */}
       <mesh position={[bx, by - bh / 2 + 0.15, 0]} castShadow receiveShadow>
         <boxGeometry args={[bl * 0.9, 0.3, bridge.size[2]]} />
-        <meshStandardMaterial color={sel ? YELLOW : '#d8d2c4'} roughness={0.7} transparent={xray} opacity={op} />
+        <meshStandardMaterial color={sel ? SIGNAL : '#d8d2c4'} roughness={0.7} transparent={xray} opacity={op} />
       </mesh>
       {/* wing bulwarks */}
       {[1, -1].map((s) => (
         <mesh key={s} position={[bx, by - bh / 2 + 0.75, s * (bridge.size[2] / 2 - 0.15)]}>
           <boxGeometry args={[bl * 0.9, 1.1, 0.16]} />
-          <meshStandardMaterial color={sel ? YELLOW : WHITE} roughness={0.7} transparent={xray} opacity={op} />
+          <meshStandardMaterial color={sel ? SIGNAL : WHITE} roughness={0.7} transparent={xray} opacity={op} />
         </mesh>
       ))}
       {/* wheelhouse with wrap-around glass */}
       <mesh position={[bx, by + 0.1, 0]} castShadow receiveShadow>
         <boxGeometry args={[bl, bh, bridgeW]} />
-        <meshStandardMaterial attach="material-0" map={gF} color={tint} emissive={sel ? YELLOW : '#000'} emissiveIntensity={emissive} roughness={0.4} metalness={0.15} transparent={xray} opacity={op} />
+        <meshStandardMaterial attach="material-0" map={gF} color={tint} emissive={sel ? SIGNAL : '#000'} emissiveIntensity={emissive} roughness={0.4} metalness={0.15} transparent={xray} opacity={op} />
         <meshStandardMaterial attach="material-1" map={gF} color={tint} roughness={0.55} metalness={0.1} transparent={xray} opacity={op} />
-        <meshStandardMaterial attach="material-2" color={sel ? YELLOW : '#cfc9bb'} roughness={0.8} transparent={xray} opacity={op} />
+        <meshStandardMaterial attach="material-2" color={sel ? SIGNAL : '#cfc9bb'} roughness={0.8} transparent={xray} opacity={op} />
         <meshStandardMaterial attach="material-3" color="#8a8680" transparent={xray} opacity={op} />
         <meshStandardMaterial attach="material-4" map={gS} color={tint} roughness={0.45} metalness={0.12} transparent={xray} opacity={op} />
         <meshStandardMaterial attach="material-5" map={gS} color={tint} roughness={0.45} metalness={0.12} transparent={xray} opacity={op} />
@@ -347,7 +347,7 @@ export function Accommodation({ layout, vessel, xray, region, hover, onSelect, o
       <group position={lifeboat.position} rotation={[0, 0, lifeboat.angle]}>
         <mesh position={[-lifeboat.length * 0.1, 0.9, 0]} rotation={[0, 0, Math.PI / 2]} castShadow>
           <capsuleGeometry args={[1.35, lifeboat.length - 2.7, 6, 14]} />
-          <meshStandardMaterial color={YELLOW} roughness={0.5} metalness={0.05} transparent={xray} opacity={op} />
+          <meshStandardMaterial color={SIGNAL} roughness={0.5} metalness={0.05} transparent={xray} opacity={op} />
         </mesh>
         <mesh position={[-lifeboat.length * 0.1, 1.9, 0]} rotation={[0, 0, Math.PI / 2]} scale={[1, 1, 0.8]}>
           <capsuleGeometry args={[0.9, lifeboat.length * 0.42, 4, 12]} />
@@ -372,7 +372,7 @@ export function Accommodation({ layout, vessel, xray, region, hover, onSelect, o
         </mesh>
         <mesh position={[crane.reach * 0.38, crane.height + 1.6, 0]} rotation={[0, 0, -0.45]} castShadow>
           <boxGeometry args={[crane.reach, 0.7, 0.6]} />
-          <meshStandardMaterial color={YELLOW} roughness={0.55} transparent={xray} opacity={op} />
+          <meshStandardMaterial color={SIGNAL} roughness={0.55} transparent={xray} opacity={op} />
         </mesh>
       </group>
     </group>
@@ -391,13 +391,13 @@ export function Forecastle({ layout, xray, region, onSelect, onHover }: PartProp
     <group onClick={(e) => { if (!tap(e)) return; onSelect('bow') }} onPointerOver={(e) => { stop(e); onHover('fc') }} onPointerOut={() => onHover(null)}>
       <mesh position={[fx, fy, 0]} castShadow receiveShadow>
         <boxGeometry args={[fl, fh, fw]} />
-        <meshStandardMaterial color={sel ? YELLOW : '#8d8f95'} emissive={sel ? YELLOW : '#000'} emissiveIntensity={sel ? 0.25 : 0} roughness={0.7} metalness={0.25} transparent={xray} opacity={op} />
+        <meshStandardMaterial color={sel ? SIGNAL : '#8d8f95'} emissive={sel ? SIGNAL : '#000'} emissiveIntensity={sel ? 0.25 : 0} roughness={0.7} metalness={0.25} transparent={xray} opacity={op} />
       </mesh>
       {/* bulwark plating around the forecastle */}
       {[1, -1].map((s) => (
         <mesh key={s} position={[fx, fy + fh / 2 + 0.6, s * (fw / 2 + 0.05)]}>
           <boxGeometry args={[fl, 1.2, 0.14]} />
-          <meshStandardMaterial color={sel ? YELLOW : '#a4a6ab'} roughness={0.7} transparent={xray} opacity={op} />
+          <meshStandardMaterial color={sel ? SIGNAL : '#a4a6ab'} roughness={0.7} transparent={xray} opacity={op} />
         </mesh>
       ))}
       {/* windlass: two chain drums and a gypsy on a bedplate */}
@@ -497,13 +497,13 @@ export function Stern({ layout, vessel, xray, region, hover, onSelect, onHover }
     return g
   }, [])
   useDispose(blade, rudderGeo, flagGeo)
-  const bronze = hot ? YELLOW : '#a0865a'
+  const bronze = hot ? SIGNAL : '#a0865a'
   return (
     <group>
       <group position={propeller.position} onClick={(e) => { if (!tap(e)) return; onSelect('propulsion') }} onPointerOver={(e) => { stop(e); onHover('prop') }} onPointerOut={() => onHover(null)}>
         <mesh rotation={[0, 0, Math.PI / 2]}>
           <cylinderGeometry args={[0.16 * R, 0.2 * R, 0.5 * R, 20]} />
-          <meshStandardMaterial color={bronze} emissive={hot ? YELLOW : '#000'} emissiveIntensity={hot ? 0.35 : 0} metalness={0.85} roughness={0.32} transparent={xray} opacity={uw} />
+          <meshStandardMaterial color={bronze} emissive={hot ? SIGNAL : '#000'} emissiveIntensity={hot ? 0.35 : 0} metalness={0.85} roughness={0.32} transparent={xray} opacity={uw} />
         </mesh>
         <mesh position={[-0.3 * R, 0, 0]} rotation={[0, 0, Math.PI / 2]}>
           <coneGeometry args={[0.16 * R, 0.24 * R, 20]} />
@@ -512,7 +512,7 @@ export function Stern({ layout, vessel, xray, region, hover, onSelect, onHover }
         {[0, 1, 2, 3].map((k) => (
           <group key={k} rotation={[(k * Math.PI) / 2 + 0.3, 0, 0]}>
             <mesh geometry={blade} rotation={[0, Math.PI / 2 - 0.5, 0]} castShadow>
-              <meshStandardMaterial color={bronze} emissive={hot ? YELLOW : '#000'} emissiveIntensity={hot ? 0.35 : 0} metalness={0.85} roughness={0.3} transparent={xray} opacity={uw} />
+              <meshStandardMaterial color={bronze} emissive={hot ? SIGNAL : '#000'} emissiveIntensity={hot ? 0.35 : 0} metalness={0.85} roughness={0.3} transparent={xray} opacity={uw} />
             </mesh>
           </group>
         ))}
@@ -520,10 +520,10 @@ export function Stern({ layout, vessel, xray, region, hover, onSelect, onHover }
       {/* rudder horn and blade */}
       <mesh position={[rudder.position[0] + rudder.size[0] * 0.1, rudder.position[1] + rudder.size[1] * 0.45, 0]} onClick={(e) => { if (!tap(e)) return; onSelect('propulsion') }}>
         <boxGeometry args={[rudder.size[0] * 0.7, rudder.size[1] * 0.55, rudder.size[2] * 1.6]} />
-        <meshStandardMaterial color={sel ? YELLOW : '#7a3325'} roughness={0.75} metalness={0.1} transparent={xray} opacity={uw} />
+        <meshStandardMaterial color={sel ? SIGNAL : '#7a3325'} roughness={0.75} metalness={0.1} transparent={xray} opacity={uw} />
       </mesh>
       <mesh geometry={rudderGeo} position={rudder.position} onClick={(e) => { if (!tap(e)) return; onSelect('propulsion') }} castShadow>
-        <meshStandardMaterial color={sel ? YELLOW : '#8f3d2c'} emissive={sel ? YELLOW : '#000'} emissiveIntensity={sel ? 0.3 : 0} roughness={0.7} metalness={0.15} transparent={xray} opacity={uw} />
+        <meshStandardMaterial color={sel ? SIGNAL : '#8f3d2c'} emissive={sel ? SIGNAL : '#000'} emissiveIntensity={sel ? 0.3 : 0} roughness={0.7} metalness={0.15} transparent={xray} opacity={uw} />
       </mesh>
       {/* stern staff and ensign */}
       <group position={[flagstaff[0] + 0.6, flagstaff[1], 0]}>
@@ -642,7 +642,7 @@ export function RegionVolume({ box, section, color, visible, selected, hovered, 
   }, [section, box.size])
   useDispose(geo)
   const pos: [number, number, number] = section ? [box.position[0], 0, 0] : box.position
-  const tint = selected || hovered ? color : '#9a958c'
+  const tint = selected || hovered ? color : '#a3a3a0'
   return (
     <group>
       <mesh

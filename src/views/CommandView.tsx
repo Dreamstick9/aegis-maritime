@@ -11,7 +11,7 @@ import { CHART_EASE } from '../components/chart/theme'
 const ChartBoard = lazy(() => import('../components/chart/ChartBoard'))
 
 /**
- * Command: the flat chart fills the stage inside a yellow margin. The chart owns its own small
+ * Command: the flat chart fills the stage inside a pale green margin. The chart owns its own small
  * controls (bottom-right) and scale bar (bottom-left); this view adds only one quiet row at
  * top-left (scenario pack, layers tab), the "Mission" reopen block at top-right while the panel
  * is closed, and the replay caption above the scale bar. Overlays take pointer events only on

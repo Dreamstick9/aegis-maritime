@@ -188,11 +188,11 @@ export default function ResultsView() {
             <div className="chart chart--tall" role="img" aria-label={`Archive scatter: ${r.archive.length} non-dominated plans, ${xLabel} against ${yLabel}`}>
               <ResponsiveContainer>
                 <ScatterChart margin={{ top: 12, right: 16, bottom: 16, left: 8 }}>
-                  <CartesianGrid stroke="rgba(245,239,221,0.08)" />
-                  <XAxis dataKey="x" type="number" name={xLabel} tick={{ fontSize: 12, fill: '#9a958c' }} stroke="rgba(245,239,221,0.24)" tickLine={false} domain={['auto', 'auto']} label={{ value: xLabel, position: 'insideBottomRight', dy: 14, fontSize: 12, fill: '#9a958c' }} />
-                  <YAxis dataKey="y" type="number" name={yLabel} tick={{ fontSize: 12, fill: '#9a958c' }} stroke="transparent" tickLine={false} domain={['auto', 'auto']} width={56} label={{ value: yLabel, angle: -90, position: 'insideLeft', fontSize: 12, fill: '#9a958c' }} />
+                  <CartesianGrid stroke="rgba(244,244,239,0.08)" />
+                  <XAxis dataKey="x" type="number" name={xLabel} tick={{ fontSize: 12, fill: '#a3a3a0' }} stroke="rgba(244,244,239,0.24)" tickLine={false} domain={['auto', 'auto']} label={{ value: xLabel, position: 'insideBottomRight', dy: 14, fontSize: 12, fill: '#a3a3a0' }} />
+                  <YAxis dataKey="y" type="number" name={yLabel} tick={{ fontSize: 12, fill: '#a3a3a0' }} stroke="transparent" tickLine={false} domain={['auto', 'auto']} width={56} label={{ value: yLabel, angle: -90, position: 'insideLeft', fontSize: 12, fill: '#a3a3a0' }} />
                   <ZAxis dataKey="z" range={[30, 170]} />
-                  <Tooltip cursor={{ stroke: 'rgba(245,239,221,0.24)' }} content={({ payload }) => {
+                  <Tooltip cursor={{ stroke: 'rgba(244,244,239,0.24)' }} content={({ payload }) => {
                     const p = payload?.[0]?.payload as (typeof scatter)[number] | undefined
                     if (!p) return null
                     return (
@@ -203,19 +203,19 @@ export default function ResultsView() {
                       </div>
                     )
                   }} />
-                  <Scatter data={scatter} fill="#f5efdd" fillOpacity={0.75} isAnimationActive={false} onClick={(d: unknown) => { const q = d as { payload?: { id?: string }; id?: string } | null; const id = q?.payload?.id ?? q?.id; if (id) selectSolution(id) }} shape={(props: unknown) => {
+                  <Scatter data={scatter} fill="#f4f4ef" fillOpacity={0.75} isAnimationActive={false} onClick={(d: unknown) => { const q = d as { payload?: { id?: string }; id?: string } | null; const id = q?.payload?.id ?? q?.id; if (id) selectSolution(id) }} shape={(props: unknown) => {
                     const q = props as { cx: number; cy: number; payload: (typeof scatter)[number] }
                     const isSel = q.payload.id === selectedId
                     const named = q.payload.label !== 'archive'
-                    return <circle cx={q.cx} cy={q.cy} r={isSel ? 7 : named ? 5 : 3.2} fill={isSel ? '#f2c230' : named ? '#f5efdd' : 'rgba(184,179,168,0.55)'} stroke={isSel ? '#0f0f10' : 'none'} strokeWidth={1.5} style={{ cursor: 'pointer' }} />
+                    return <circle cx={q.cx} cy={q.cy} r={isSel ? 7 : named ? 5 : 3.2} fill={isSel ? '#8fd66e' : named ? '#f4f4ef' : 'rgba(184,179,168,0.55)'} stroke={isSel ? '#101210' : 'none'} strokeWidth={1.5} style={{ cursor: 'pointer' }} />
                   }} />
                 </ScatterChart>
               </ResponsiveContainer>
             </div>
             <div className="legend">
-              <span><i style={{ background: '#111112', height: 8, width: 8, borderRadius: 4, outline: '2px solid #f2c230', outlineOffset: -3 }} />selected plan</span>
-              <span><i style={{ background: '#111112', height: 6, width: 6, borderRadius: 3 }} />named plan</span>
-              <span><i style={{ background: 'rgba(17,17,18,0.45)', height: 6, width: 6, borderRadius: 3 }} />archive member</span>
+              <span><i style={{ background: '#151614', height: 8, width: 8, borderRadius: 4, outline: '2px solid #8fd66e', outlineOffset: -3 }} />selected plan</span>
+              <span><i style={{ background: '#151614', height: 6, width: 6, borderRadius: 3 }} />named plan</span>
+              <span><i style={{ background: 'rgba(21,22,20,0.45)', height: 6, width: 6, borderRadius: 3 }} />archive member</span>
             </div>
           </Section>
 

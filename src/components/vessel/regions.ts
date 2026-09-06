@@ -2,13 +2,13 @@
 export type RegionId = 'engine' | 'fuel' | 'cargo' | 'ballast' | 'bridge' | 'propulsion' | 'bow'
 
 export const REGION_META: Record<RegionId, { label: string; color: string }> = {
-  engine: { label: 'Engine room', color: '#f2c230' },
-  fuel: { label: 'Fuel tanks', color: '#f2c230' },
-  cargo: { label: 'Cargo holds', color: '#f2c230' },
-  ballast: { label: 'Ballast & stability', color: '#f2c230' },
-  bridge: { label: 'Bridge & accommodation', color: '#f2c230' },
-  propulsion: { label: 'Propulsion', color: '#f2c230' },
-  bow: { label: 'Bow & mooring', color: '#f2c230' },
+  engine: { label: 'Engine room', color: '#8fd66e' },
+  fuel: { label: 'Fuel tanks', color: '#8fd66e' },
+  cargo: { label: 'Cargo holds', color: '#8fd66e' },
+  ballast: { label: 'Ballast & stability', color: '#8fd66e' },
+  bridge: { label: 'Bridge & accommodation', color: '#8fd66e' },
+  propulsion: { label: 'Propulsion', color: '#8fd66e' },
+  bow: { label: 'Bow & mooring', color: '#8fd66e' },
 }
 
 export function regionOf(sel: string | null): RegionId | null {

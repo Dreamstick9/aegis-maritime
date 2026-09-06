@@ -1,20 +1,21 @@
 /*
-  Aegis Maritime, visual world "Signal Yellow" (see DESIGN.md)
+  Aegis Maritime, visual world "Signal Green" (see DESIGN.md)
 
-  THESIS: the page is the warning colour and the instrument is black. Yellow is the ground the
-  officer works on; black is structure, type and every data plate; on the chart the plan is the
-  one bold line and the mission vessel the one yellow mark. Refused: the glowing dark dashboard,
-  the pastel SaaS console, the card grid, the tilted "3D" map.
-  OWN-WORLD: saturated safety-yellow canvas, off-black type and rules, black plates for the
-  vessel model, charts and the status bar; a flat 2D nautical chart (light by default, a black
-  night mode) inside the yellow margin; off-white type on black; alarm red only for a computed
+  THESIS: the page is a pale, quiet ground and the instrument is black. Pale green is the ground
+  the officer works on; black is structure, type and every data plate; on the chart the plan is
+  the one bold line and the mission vessel the one green mark. Refused: the glowing dark
+  dashboard, the pastel SaaS console, the card grid, the tilted "3D" map.
+  OWN-WORLD: pale green canvas under a soft diagonal wash, off-black type and rules, black plates
+  for the vessel model, charts and the status bar; a flat 2D nautical chart (light by default, a
+  black night mode) inside the pale green margin; off-white type on black; the signal green on
+  black for the plan, the primary action and the active rail item; alarm red only for a computed
   alarm. Geist for text, Geist Mono for data. All corners 2px (all-sharp system).
   STORY: the officer reads the plan on the flat chart, runs the engine from the one black block,
   replays the voyage and reads why the plan changed, in the plan's own numbers.
-  FIRST VIEWPORT: yellow frame; 64px black rail; the flat chart filling the stage with the route
-  drawing itself in; one quiet row of black blocks at top-left (scenario pack, layers tab); the
-  chart's own small controls at bottom-right and a scale bar at bottom-left; the mission panel
-  as a yellow column beside the chart (name, four numerals, plan controls, one sentence); black
+  FIRST VIEWPORT: pale green frame; 64px black rail; the flat chart filling the stage with the
+  route drawing itself in; one quiet row of black blocks at top-left (scenario pack, layers tab);
+  the chart's own small controls at bottom-right and a scale bar at bottom-left; the mission panel
+  as a pale green column beside the chart (name, four numerals, plan controls, one sentence); black
   status bar with the replay scrubber as its top rule.
   MOTION: camera eases (zoom to cursor, fit, follow), the route draw-in, the superseded route
   fading, the caption sliding in, panel presence. Exponential ease-out, 160 to 900 ms, nothing
@@ -27,38 +28,42 @@
 @layer tokens {
   :root {
     color-scheme: light;
-    /* yellow ground */
-    --y0: #f2c230;
-    --y1: #e5b41d;
-    --y2: #d9a814;
-    --y-deep: #b98d0b;
+    /* pale green ground */
+    --y0: #f4fbec;
+    --y1: #e8f5db;
+    --y2: #dcefc9;
+    --y-deep: #9cc97f;
+    /* the signal green: fills on black, type on black blocks */
+    --g-fill: #bfe7a2;
+    --g-ink: #cbe9ab;
+    --g-bright: #8fd66e;
     /* black structure */
-    --k0: #111112;
-    --k1: #1a1a1c;
-    --k2: #242427;
-    --k3: #313136;
+    --k0: #151614;
+    --k1: #1c1d1a;
+    --k2: #24251f;
+    --k3: #313329;
     /* alarm, two luminances for the two grounds */
     --alarm-on-y: #a8261c;
     --alarm-on-k: #ef4b3f;
 
-    /* surface context: yellow canvas (default). Components read only these. */
+    /* surface context: pale green canvas (default). Components read only these. */
     --bg: var(--y0);
     --bg-hover: var(--y1);
     --bg-press: var(--y2);
     --ink0: var(--k0);
-    --ink1: rgba(17, 17, 18, 0.82);
-    --ink2: rgba(17, 17, 18, 0.64);
-    --ink3: rgba(17, 17, 18, 0.42);
-    --hair: rgba(17, 17, 18, 0.16);
-    --hair-2: rgba(17, 17, 18, 0.34);
-    --rule-control: rgba(17, 17, 18, 0.62);
-    --signal: var(--k0); /* the primary action on yellow is black */
-    --signal-ink: var(--y0); /* type on the primary action */
+    --ink1: rgba(21, 22, 20, 0.82);
+    --ink2: rgba(21, 22, 20, 0.64);
+    --ink3: rgba(21, 22, 20, 0.42);
+    --hair: rgba(21, 22, 20, 0.16);
+    --hair-2: rgba(21, 22, 20, 0.34);
+    --rule-control: rgba(21, 22, 20, 0.62);
+    --signal: var(--k0); /* the primary action on the pale ground is black */
+    --signal-ink: var(--g-ink); /* type on the primary action */
     --signal-hover: #000;
     --sea: var(--signal);
     --red: var(--alarm-on-y);
     --focus: var(--k0);
-    --shadow: 0 30px 60px -30px rgba(70, 48, 0, 0.55), 0 12px 24px -16px rgba(70, 48, 0, 0.4);
+    --shadow: 0 30px 60px -30px rgba(26, 45, 18, 0.4), 0 12px 24px -16px rgba(26, 45, 18, 0.28);
 
     --sans: 'Geist Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     --mono: 'Geist Mono Variable', 'SFMono-Regular', Menlo, Consolas, monospace;
@@ -76,19 +81,19 @@
     --bg: var(--k1);
     --bg-hover: var(--k2);
     --bg-press: var(--k3);
-    --ink0: #f5efdd;
-    --ink1: #c9c3b6;
-    --ink2: #9a958c;
-    --ink3: #5d5a55;
-    --hair: rgba(245, 239, 221, 0.12);
-    --hair-2: rgba(245, 239, 221, 0.24);
-    --rule-control: rgba(245, 239, 221, 0.46);
-    --signal: var(--y0);
+    --ink0: #f4f4ef;
+    --ink1: #d5d6d1;
+    --ink2: #a3a3a0;
+    --ink3: #5c5d5a;
+    --hair: rgba(244, 244, 239, 0.12);
+    --hair-2: rgba(244, 244, 239, 0.24);
+    --rule-control: rgba(244, 244, 239, 0.46);
+    --signal: var(--g-fill);
     --signal-ink: var(--k0);
-    --signal-hover: #ffd54a;
+    --signal-hover: #d2f0ba;
     --sea: var(--signal);
     --red: var(--alarm-on-k);
-    --focus: var(--y0);
+    --focus: var(--g-fill);
     color: var(--ink0);
   }
 }
@@ -109,6 +114,8 @@
 
   body {
     background: var(--y0);
+    background-image: linear-gradient(150deg, #eff8e4 0%, #f7fcf1 42%, #ffffff 100%);
+    background-attachment: fixed;
     color: var(--k0);
     font-family: var(--sans);
     font-size: 15.5px;
@@ -164,11 +171,11 @@
 
   ::selection {
     background: var(--k0);
-    color: var(--y0);
+    color: var(--g-ink);
   }
 
   .on-k ::selection {
-    background: var(--y0);
+    background: var(--g-fill);
     color: var(--k0);
   }
 
@@ -199,7 +206,7 @@
     display: grid;
     grid-template-columns: var(--rail-w) 1fr;
     height: 100%;
-    background: var(--y0);
+    background: transparent;
   }
 
   .rail {
@@ -217,7 +224,7 @@
     display: grid;
     place-items: center;
     margin-bottom: 18px;
-    color: var(--y0);
+    color: var(--g-bright);
   }
 
   .rail__link {
@@ -242,7 +249,7 @@
 
   .rail__link.active {
     color: var(--k0);
-    background: var(--y0);
+    background: var(--g-fill);
   }
 
   .main {
@@ -258,7 +265,7 @@
     height: 100%;
     overflow: auto;
     padding: 44px 56px 80px;
-    background: var(--y0);
+    background: transparent;
   }
 
   .view__inner {
@@ -992,7 +999,7 @@
     display: grid;
     grid-template-columns: minmax(0, 1fr) 0;
     grid-template-rows: minmax(0, 1fr) var(--strip-h);
-    background: var(--y0);
+    background: transparent;
     transition: grid-template-columns var(--t-slow) var(--ease);
   }
 
@@ -1080,7 +1087,7 @@
   }
 
   .scenario-pick select:focus-visible {
-    outline: 2px solid var(--y0);
+    outline: 2px solid var(--g-fill);
     outline-offset: 2px;
   }
 
@@ -1233,7 +1240,7 @@
     z-index: 6;
   }
 
-  /* the mission / dossier panel: a yellow column */
+  /* the mission / dossier panel: a pale green column */
 
   .inspector {
     position: absolute;
@@ -1450,7 +1457,7 @@
     appearance: none;
     width: 3px;
     height: 18px;
-    background: var(--y0);
+    background: var(--g-fill);
   }
 
   .scrub__input::-moz-range-track {
@@ -1461,7 +1468,7 @@
     width: 3px;
     height: 18px;
     border: 0;
-    background: var(--y0);
+    background: var(--g-fill);
     border-radius: 0;
   }
 
@@ -1542,8 +1549,8 @@
   }
 
   .hull.is-selected {
-    background: var(--y0);
-    color: var(--k0);
+    background: var(--signal);
+    color: var(--signal-ink);
   }
 
   .hull.is-selected .hull__class,
@@ -1678,7 +1685,7 @@
 
   .compare .pick.is-on {
     background: var(--k0);
-    color: var(--y0);
+    color: var(--g-ink);
   }
 
   .chart {
@@ -1786,7 +1793,7 @@
   }
 
   .stop[aria-pressed='true'] {
-    color: var(--y0);
+    color: var(--g-ink);
     border-color: var(--k0);
     background: var(--k0);
   }

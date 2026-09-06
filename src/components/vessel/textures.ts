@@ -10,9 +10,9 @@ import { hullPoint, type HullParams } from './hull'
 
 type Ctx = CanvasRenderingContext2D
 
-const OFF_WHITE = '#f5efdd'
-const YELLOW = '#f2c230'
-const BLACK = '#111112'
+const OFF_WHITE = '#f4f4ef'
+const SIGNAL = '#8fd66e'
+const BLACK = '#151614'
 
 export const font = (weight: number, px: number) => `${weight} ${px}px 'Geist Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`
 export const mono = (weight: number, px: number) => `${weight} ${px}px 'Geist Mono Variable', SFMono-Regular, Menlo, monospace`
@@ -147,7 +147,7 @@ export function drawSide(ctx: Ctx, W: number, H: number, v: Vessel, p: HullParam
   ctx.fill()
 
   // thin sheer-strake line under the deck edge
-  ctx.fillStyle = 'rgba(245,239,221,0.28)'
+  ctx.fillStyle = 'rgba(244,244,239,0.28)'
   ctx.fillRect(X(tX(0.14)), Y(D - 0.35), (tX(0.985) - tX(0.14)) * px, Math.max(1, 0.08 * py))
 }
 
@@ -184,7 +184,7 @@ export function drawFacade(ctx: Ctx, W: number, H: number, wM: number, hM: numbe
   // faint horizontal plating and deck seams
   for (let k = 1; k < tiers; k++) {
     const y = H - k * deckH * py
-    ctx.fillStyle = 'rgba(17,17,18,0.16)'
+    ctx.fillStyle = 'rgba(21,22,20,0.16)'
     ctx.fillRect(0, y - 1, W, 2)
   }
   const density = opts.density ?? 1
@@ -209,7 +209,7 @@ export function drawFacade(ctx: Ctx, W: number, H: number, wM: number, hM: numbe
     ctx.fillRect((wM * 0.5 - 0.6) * px, H - 2.2 * py, 1.2 * px, 2.2 * py)
   }
   // a thin dark rubbing line at the base
-  ctx.fillStyle = 'rgba(17,17,18,0.3)'
+  ctx.fillStyle = 'rgba(21,22,20,0.3)'
   ctx.fillRect(0, H - 0.3 * py, W, 0.3 * py)
 }
 
@@ -230,7 +230,7 @@ export function drawBridgeGlass(ctx: Ctx, W: number, H: number, wM: number, opts
   ctx.fillRect(0, H * 0.12 + gh - 2, W, 3)
 }
 
-/** funnel livery wrapped around the casing: black casing, signal-yellow band with the Aegis shield, tricolour for the Indian registry */
+/** funnel livery wrapped around the casing: black casing, signal band with the Aegis shield, tricolour for the Indian registry */
 export function drawFunnel(ctx: Ctx, W: number, H: number, indian: boolean) {
   ctx.fillStyle = '#17181a'
   ctx.fillRect(0, 0, W, H)
@@ -239,14 +239,14 @@ export function drawFunnel(ctx: Ctx, W: number, H: number, indian: boolean) {
   ctx.fillRect(0, 0, W, H * 0.1)
   const bandTop = H * 0.2
   const bandH = H * 0.24
-  ctx.fillStyle = YELLOW
+  ctx.fillStyle = SIGNAL
   ctx.fillRect(0, bandTop, W, bandH)
   if (indian) {
     const sh = H * 0.045
     const y0 = bandTop + bandH + H * 0.05
     ctx.fillStyle = '#ff9933'
     ctx.fillRect(0, y0, W, sh)
-    ctx.fillStyle = '#f5efdd'
+    ctx.fillStyle = '#f4f4ef'
     ctx.fillRect(0, y0 + sh, W, sh)
     ctx.fillStyle = '#138808'
     ctx.fillRect(0, y0 + sh * 2, W, sh)
@@ -261,7 +261,7 @@ export function drawFunnel(ctx: Ctx, W: number, H: number, indian: boolean) {
     ctx.scale(size / 64, size / 64)
     ctx.fillStyle = BLACK
     ctx.fill(shield)
-    ctx.strokeStyle = YELLOW
+    ctx.strokeStyle = SIGNAL
     ctx.lineWidth = 3
     ctx.lineCap = 'round'
     ctx.lineJoin = 'round'
@@ -342,7 +342,7 @@ export function drawFlag(ctx: Ctx, W: number, H: number, indian: boolean) {
 export function drawHatchCover(ctx: Ctx, W: number, H: number) {
   ctx.fillStyle = '#4a4b50'
   ctx.fillRect(0, 0, W, H)
-  ctx.fillStyle = 'rgba(245,239,221,0.06)'
+  ctx.fillStyle = 'rgba(244,244,239,0.06)'
   for (let i = 1; i < 8; i++) ctx.fillRect((W * i) / 8 - 1, 0, 2, H)
   ctx.fillStyle = 'rgba(0,0,0,0.55)'
   ctx.fillRect(0, H / 2 - 3, W, 6)

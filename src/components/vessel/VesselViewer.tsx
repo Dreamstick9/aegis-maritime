@@ -22,7 +22,7 @@ interface Props {
   cargoFill?: number
 }
 
-const PLATE = '#0f0f10'
+const PLATE = '#101210'
 
 function Ship({ vessel, selected, onSelect, xray, sailingDraftM, spin, cargoFill }: Omit<Props, 'autoRotate' | 'reducedMotion'> & { spin: boolean }) {
   const layout = useMemo(() => layoutFor(vessel), [vessel])
@@ -65,7 +65,7 @@ function Ship({ vessel, selected, onSelect, xray, sailingDraftM, spin, cargoFill
         />
       ))}
       {layout.holds.map((h, i) => (
-        <RegionVolume key={h.id} box={h} section={layout.holdSection} color="#f2c230" visible={xray} selected={holdSel === String(i + 1) || (region === 'cargo' && !holdSel)} hovered={hover === h.id} onSelect={onSelect} onHover={setHover} alwaysClickable={xray} fill={cargoFill} />
+        <RegionVolume key={h.id} box={h} section={layout.holdSection} color="#8fd66e" visible={xray} selected={holdSel === String(i + 1) || (region === 'cargo' && !holdSel)} hovered={hover === h.id} onSelect={onSelect} onHover={setHover} alwaysClickable={xray} fill={cargoFill} />
       ))}
       {/* callouts */}
       <group position={[0, sailingDraftM, 0]}>
@@ -176,10 +176,10 @@ function ChartGrid({ L }: { L: number }) {
   return (
     <group position={[0, 0.08, 0]} renderOrder={11}>
       <lineSegments geometry={cells}>
-        <lineBasicMaterial color="#f5efdd" transparent opacity={0.025} depthWrite={false} />
+        <lineBasicMaterial color="#f4f4ef" transparent opacity={0.025} depthWrite={false} />
       </lineSegments>
       <lineSegments geometry={sections}>
-        <lineBasicMaterial color="#f5efdd" transparent opacity={0.07} depthWrite={false} />
+        <lineBasicMaterial color="#f4f4ef" transparent opacity={0.07} depthWrite={false} />
       </lineSegments>
     </group>
   )
@@ -196,7 +196,7 @@ function Lighting({ L }: { L: number }) {
         <Lightformer form="rect" intensity={1.2} color="#dfe6f2" position={[0, L * 0.2, L * 1.2]} target={[0, 0, 0]} scale={[L * 2, L * 0.4, 1]} />
         <Lightformer form="ring" intensity={0.8} color="#ffffff" position={[L * 0.3, L * 0.6, -L * 0.5]} target={[0, 0, 0]} scale={[L * 0.5, L * 0.5, 1]} />
       </Environment>
-      <hemisphereLight args={['#e8e2d3', '#0f0f10', 0.5]} />
+      <hemisphereLight args={['#e8eae2', '#101210', 0.5]} />
       <directionalLight
         position={[L * 0.55, L * 0.7, L * 0.4]}
         intensity={2.3}

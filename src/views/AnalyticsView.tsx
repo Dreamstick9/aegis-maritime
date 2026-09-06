@@ -16,16 +16,16 @@ import { dailySeries } from '../engine/replay'
 import { Rng } from '../engine/rng'
 import type { Evaluation, OptimizerRunResult } from '../engine/types'
 
-const GRID = 'rgba(245,239,221,0.08)'
-const AXIS_STROKE = 'rgba(245,239,221,0.24)'
-const AXIS = { fontSize: 12, fill: '#9a958c' }
-const TIP = { background: '#1a1a1c', border: '1px solid rgba(245,239,221,0.24)', color: '#f5efdd', fontSize: 12, fontFamily: 'var(--mono)' }
-const LEGEND = { fontSize: 12, color: '#9a958c' }
-const INK0 = '#f5efdd'
-const INK1 = '#c9c3b6'
-const INK2 = '#9a958c'
-const SIGNAL = '#f2c230'
-const SERIES = [INK1, INK2, '#7a766e', '#5d5a55', SIGNAL]
+const GRID = 'rgba(244,244,239,0.08)'
+const AXIS_STROKE = 'rgba(244,244,239,0.24)'
+const AXIS = { fontSize: 12, fill: '#a3a3a0' }
+const TIP = { background: '#1c1d1a', border: '1px solid rgba(244,244,239,0.24)', color: '#f4f4ef', fontSize: 12, fontFamily: 'var(--mono)' }
+const LEGEND = { fontSize: 12, color: '#a3a3a0' }
+const INK0 = '#f4f4ef'
+const INK1 = '#d5d6d1'
+const INK2 = '#a3a3a0'
+const SIGNAL = '#8fd66e'
+const SERIES = [INK1, INK2, '#7f807c', '#5c5d5a', SIGNAL]
 
 function ChartTip({ active, payload, label, unit }: { active?: boolean; payload?: { name?: string; value?: number | string; color?: string }[]; label?: string | number; unit?: string }) {
   if (!active || !payload?.length) return null
@@ -272,7 +272,7 @@ export default function AnalyticsView() {
                   <CartesianGrid stroke={GRID} horizontal={false} />
                   <XAxis type="number" tick={AXIS} stroke="transparent" tickLine={false} />
                   <YAxis type="category" dataKey="phase" tick={AXIS} stroke="transparent" tickLine={false} width={190} />
-                  <Tooltip content={<ChartTip />} cursor={{ fill: 'rgba(245,239,221,0.05)' }} />
+                  <Tooltip content={<ChartTip />} cursor={{ fill: 'rgba(244,244,239,0.05)' }} />
                   <Legend wrapperStyle={LEGEND} />
                   <Bar dataKey="fuelT" name="fuel t" fill={SIGNAL} isAnimationActive={false} barSize={8} />
                   <Bar dataKey="co2T" name="CO₂e t" fill={INK1} isAnimationActive={false} barSize={8} />
