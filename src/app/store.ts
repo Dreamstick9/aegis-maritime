@@ -128,7 +128,7 @@ export const DEFAULT_UI: UiSettings = {
   showTruthStorm: false,
   commandPanelOpen: true,
   visibleRoute: '/',
-  chartMode: 'chart',
+  chartMode: 'night',
   followVessel: true,
 }
 

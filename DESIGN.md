@@ -134,7 +134,7 @@ Typography is Geist at a comfortable desktop size; Geist Mono appears only for c
 
 **Key Characteristics:**
 - Two grounds, one grammar: pale green canvas with black type; black plates with off-white type. The same components read their colours from the surface they sit on.
-- The chart is a completely flat 2D chart, not a globe and not a tilted plate: a light nautical chart by default, a black night mode on demand, the camera eases, the route draws itself in, everything else is still. Its controls are few, small and quiet, in the manner of modern boating-chart apps (their calm hierarchy, none of their branding).
+- The chart is a completely flat 2D chart, not a globe and not a tilted plate: a black night chart by default, a light nautical chart on demand, the camera eases, the route draws itself in, everything else is still. Its controls are few, small and quiet, in the manner of modern boating-chart apps (their calm hierarchy, none of their branding).
 - Progressive disclosure: one panel column, a drawer, a status bar; details behind summaries.
 - All corners 2px; rules are 1px; the only heavy rule is the 2px black line under a view title.
 - Motion is motivated and exponential ease-out; reduced motion removes all of it except state changes.

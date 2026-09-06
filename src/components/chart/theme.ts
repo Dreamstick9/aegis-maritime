@@ -2,9 +2,9 @@
  * Chart symbology per mode. The chart is flat 2D; every layer reads colours from the active theme
  * through useChart() (see context.ts) and never hard-codes a ground colour.
  *
- *  - "chart": a light nautical chart (pale water, sand land, soft shelf tint). The plan is black,
+ *  - "chart": a light nautical chart, on demand (pale water, sand land, soft shelf tint). The plan is black,
  *    the mission vessel is the one green mark; alternatives are grey.
- *  - "night": the black plate. The plan and the mission vessel are green; travelled track off-white.
+ *  - "night": the black plate, the default. The plan and the mission vessel are green; travelled track off-white.
  *
  * Alarm red is reserved for computed breaches and the storm core (DESIGN.md, the Alarm Rule).
  *
