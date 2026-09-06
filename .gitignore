@@ -9,3 +9,5 @@ coverage
 # demo recordings (kept locally, not in the repo)
 *.webm
 *.mp4
+.vercel
+.env*
