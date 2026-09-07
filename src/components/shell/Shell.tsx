@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import type { ReactNode } from 'react'
-import { Anchor, Boat, ChartBar, ChartScatter, GearSix, MapTrifold, Path, Shield } from '@phosphor-icons/react'
+import { Anchor, Boat, ChartBar, ChartScatter, GearSix, MapTrifold, Path } from '@phosphor-icons/react'
 import { useStore } from '../../app/store'
 import { PACKS } from '../../data/scenarios'
 import { PORTS } from '../../data/ports'
@@ -22,7 +22,7 @@ export function Rail() {
   return (
     <nav className="rail on-k" aria-label="Primary">
       <div className="rail__brand" title="Aegis Maritime, Fleet Command">
-        <Shield size={26} weight="fill" aria-hidden="true" />
+        <img className="rail__logo" src="/aegis-logo.png" alt="" aria-hidden="true" width={36} height={36} />
         <span className="sr-only">Aegis Maritime</span>
       </div>
       {NAV.map((n, i) => (
