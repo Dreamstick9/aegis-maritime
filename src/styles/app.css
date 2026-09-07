@@ -218,20 +218,18 @@
     background: var(--k0);
   }
 
-  /* the navy mark cannot carry itself on the black rail: it sits on a light plate */
   .rail__brand {
     width: 36px;
     height: 36px;
     display: grid;
     place-items: center;
     margin-bottom: 18px;
-    border-radius: var(--radius);
-    background: #f4f4ef;
   }
 
+  /* the mark sits bare on the rail, so it is the on-black cut: the navy lifted to the light ink */
   .rail__logo {
-    width: 30px;
-    height: 30px;
+    width: 36px;
+    height: 36px;
     object-fit: contain;
     display: block;
   }

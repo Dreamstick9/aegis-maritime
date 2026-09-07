@@ -22,7 +22,7 @@ export function Rail() {
   return (
     <nav className="rail on-k" aria-label="Primary">
       <div className="rail__brand" title="Aegis Maritime, Fleet Command">
-        <img className="rail__logo" src="/aegis-logo.png" alt="" aria-hidden="true" width={36} height={36} />
+        <img className="rail__logo" src="/aegis-logo-on-dark.png" alt="" aria-hidden="true" width={36} height={36} />
         <span className="sr-only">Aegis Maritime</span>
       </div>
       {NAV.map((n, i) => (
